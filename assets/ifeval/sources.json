@@ -1,0 +1,40 @@
+{
+  "commit": "e6890f85757dd84e27ca6df2dd30651dafad28e0",
+  "files": {
+    "README.md": {
+      "bytes": 1457,
+      "sha256": "fef3c44408e4b39837af345095ccce7da798853fd60ea94a1de63afa9d3d67b3",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/README.md"
+    },
+    "data/input_data.jsonl": {
+      "bytes": 207111,
+      "sha256": "67ffeee0fcb87c317c5b08a2de85557b4a7e96ada6178aa645b4954fe4b53d49",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/data/input_data.jsonl"
+    },
+    "evaluation_lib.py": {
+      "bytes": 6984,
+      "sha256": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/evaluation_lib.py"
+    },
+    "evaluation_main.py": {
+      "bytes": 2449,
+      "sha256": "e6df07a04d25a0e7134933ba2400c26e0129a243e449c88df55043e583fc4b4a",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/evaluation_main.py"
+    },
+    "instructions.py": {
+      "bytes": 55162,
+      "sha256": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions.py"
+    },
+    "instructions_registry.py": {
+      "bytes": 7240,
+      "sha256": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_registry.py"
+    },
+    "instructions_util.py": {
+      "bytes": 19538,
+      "sha256": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_util.py"
+    }
+  }
+}

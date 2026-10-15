@@ -1,0 +1,12 @@
+-r requirements.txt
+torch==2.8.0
+transformers==4.46.3
+tokenizers==0.20.3
+huggingface-hub==0.36.2
+diffusers==0.32.2
+peft==0.13.2
+accelerate==1.10.1
+sentencepiece==0.2.1
+safetensors>=0.4.5
+datasets==3.6.0
+scipy>=1.13

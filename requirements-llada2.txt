@@ -1,0 +1,8 @@
+-r requirements.txt
+torch==2.8.0
+transformers==4.57.1
+tokenizers==0.22.1
+huggingface-hub>=0.34.0,<1.0
+accelerate>=1.0
+sentencepiece==0.2.1
+safetensors>=0.4.5

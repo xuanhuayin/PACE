@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible implementation or setup problem.
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python, package versions, GPU/CUDA if applicable, and operating system.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Include the command, model, benchmark, and relevant configuration. Remove access tokens and private paths.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true

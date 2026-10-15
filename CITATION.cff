@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use PACE, please cite this implementation and the associated manuscript."
+type: software
+title: "PACE: Construct-Then-Certify Instruction Following with Diffusion Language Models"
+authors:
+  - family-names: Yin
+    given-names: Xuanhua
+  - family-names: Wei
+    given-names: Boyu
+  - family-names: Mao
+    given-names: Shunqi
+  - family-names: Xu
+    given-names: Chuanzhi
+  - family-names: Cai
+    given-names: Weidong
+version: 0.1.0
+date-released: 2026-10-16
+license: Apache-2.0
+repository-code: "https://github.com/xuanhuayin/PACE"
+url: "https://github.com/xuanhuayin/PACE"
+keywords:
+  - diffusion language models
+  - instruction following
+  - constrained decoding
+  - finite-state automata
+  - evaluation

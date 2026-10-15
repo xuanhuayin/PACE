@@ -1,0 +1,25 @@
+{
+  "description": "Synthetic schema example, not experimental labels or paper results.",
+  "arms": {
+    "pace": {
+      "official_passes": 8,
+      "official_total": 10,
+      "draws": [
+        {"id": "synthetic-1", "labels": ["GENUINE", "GENUINE"]},
+        {"id": "synthetic-2", "labels": ["GENUINE", "LOOPHOLE"]},
+        {"id": "synthetic-3", "labels": ["GENUINE", "GENUINE"]}
+      ]
+    },
+    "native": {
+      "official_passes": 5,
+      "official_total": 10,
+      "draws": [
+        {"id": "synthetic-4", "labels": ["GENUINE", "GENUINE"]},
+        {"id": "synthetic-5", "labels": ["LOOPHOLE", "LOOPHOLE"]},
+        {"id": "synthetic-6", "labels": ["GENUINE", "GENUINE"]}
+      ]
+    }
+  },
+  "comparisons": [["pace", "native"]]
+}
+

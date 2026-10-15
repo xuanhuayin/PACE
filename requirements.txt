@@ -1,0 +1,7 @@
+numpy==2.3.2
+nltk==3.9.2
+langdetect==1.0.9
+immutabledict==4.2.2
+absl-py==2.3.1
+emoji==2.16.0
+syllapy==0.8.0

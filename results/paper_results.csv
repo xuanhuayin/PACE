@@ -1,0 +1,37 @@
+benchmark,model,method,fulfillment_pct,fulfillment_ci95_low,fulfillment_ci95_high,official_instruction_accuracy_pct,genuine_share_pct
+IFEval,TESS-2,Native,23.1,17.6,28.2,37.0,62.5
+IFEval,TESS-2,Diffinity,24.9,19.7,30.1,41.5,60.0
+IFEval,TESS-2,Best-of-8,30.3,24.5,36.1,49.8,60.8
+IFEval,TESS-2,No program,44.9,34.2,55.6,85.5,52.5
+IFEval,TESS-2,PACE,55.0,47.9,62.1,83.3,66.0
+IFEval,LLaDA,Native,55.3,47.9,62.0,66.1,83.8
+IFEval,LLaDA,Self-refine,57.0,50.2,62.7,68.4,83.3
+IFEval,LLaDA,Dang and Ermon,52.6,41.8,62.7,86.4,60.8
+IFEval,LLaDA,DINGO,59.2,49.1,69.3,86.6,68.3
+IFEval,LLaDA,Step-wise,60.6,49.6,70.8,87.6,69.2
+IFEval,LLaDA,No program,63.1,52.8,72.6,88.0,71.7
+IFEval,LLaDA,PACE,73.4,66.9,79.0,86.8,84.5
+IFEval,LLaDA-1.5,Native,58.3,50.7,64.3,67.6,86.2
+IFEval,LLaDA-1.5,No program,71.9,63.8,79.2,88.0,81.7
+IFEval,LLaDA-1.5,PACE,71.3,64.2,77.9,88.6,80.5
+IFEval,LLaDA2.0-mini,Native,67.6,57.4,75.8,82.0,82.5
+IFEval,LLaDA2.0-mini,No program,70.1,59.5,79.3,91.5,76.7
+IFEval,LLaDA2.0-mini,PACE,81.6,75.0,87.3,94.4,86.5
+IFEval,Dream,Native,52.1,42.0,60.5,67.2,77.5
+IFEval,Dream,No program,59.1,48.2,68.6,87.6,67.5
+IFEval,Dream,PACE,68.6,61.7,75.0,86.2,79.5
+IFBench,TESS-2,Native,6.1,4.4,7.7,11.0,55.3
+IFBench,TESS-2,No program,8.8,3.6,14.5,62.2,14.2
+IFBench,TESS-2,PACE,31.5,27.0,36.1,50.9,62.0
+IFBench,LLaDA,Native,9.3,6.3,12.2,19.5,47.5
+IFBench,LLaDA,No program,17.4,11.4,23.8,59.6,29.2
+IFBench,LLaDA,PACE,24.1,19.0,29.2,56.7,42.5
+IFBench,LLaDA-1.5,Native,12.9,9.5,16.4,23.0,56.2
+IFBench,LLaDA-1.5,No program,16.7,9.9,23.4,62.5,26.7
+IFBench,LLaDA-1.5,PACE,30.5,25.0,35.7,57.6,53.0
+IFBench,LLaDA2.0-mini,Native,22.4,18.4,25.7,29.4,76.2
+IFBench,LLaDA2.0-mini,No program,27.3,19.4,35.3,68.3,40.0
+IFBench,LLaDA2.0-mini,PACE,37.2,31.3,43.0,61.9,60.0
+IFBench,Dream,Native,11.4,8.6,14.2,18.6,61.3
+IFBench,Dream,No program,12.2,6.4,18.6,63.7,19.2
+IFBench,Dream,PACE,28.2,22.7,33.7,58.1,48.5

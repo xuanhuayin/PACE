@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-16",
+  "python": "3.12",
+  "environment": "Fresh virtual environment with requirements.txt; public assets fetched with setup_assets.py.",
+  "solver_unit_tests": 20,
+  "release_tool_unit_tests": 6,
+  "ifeval_guard_assertions": 92,
+  "ifbench_guard_assertions": 47,
+  "official_metric_crosschecks": [
+    {
+      "model": "tess",
+      "benchmark": "ifeval",
+      "official_instruction_correct": 430,
+      "official_instruction_total": 516,
+      "official_instruction_accuracy_pct": 83.33333333333333
+    },
+    {
+      "model": "llada",
+      "benchmark": "ifeval",
+      "official_instruction_correct": 448,
+      "official_instruction_total": 516,
+      "official_instruction_accuracy_pct": 86.82170542635659
+    },
+    {
+      "model": "tess",
+      "benchmark": "ifbench",
+      "official_instruction_correct": 175,
+      "official_instruction_total": 344,
+      "official_instruction_accuracy_pct": 50.872093023255815
+    }
+  ],
+  "gpu_inference_rerun": false,
+  "note": "Checks use existing response corpora locally. No response texts or private audit labels are included in the repository."
+}

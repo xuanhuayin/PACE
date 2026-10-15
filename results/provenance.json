@@ -1,0 +1,20 @@
+{
+  "title": "Certified Yet Unfulfilled: Construct-Then-Certify Instruction Following with Diffusion Language Models",
+  "source": "Manuscript Tables 1 and 2",
+  "note": "Rounded manuscript values, not a new experimental run. Fulfillment is an audit-adjusted estimate, distinct from official accuracy.",
+  "split": {
+    "IFEval": {
+      "prompts": 341,
+      "instructions": 516
+    },
+    "IFBench": {
+      "prompts": 300,
+      "instructions": 344
+    }
+  },
+  "table_source_sha256": {
+    "ifeval_main.tex": "484d2f9e0144c6eb4831deec5aabd837cfe88cbb274667e37cf3d7794e651a4e",
+    "ifbench_models.tex": "5a98312bd536a4676beaa8e9edea6f2f882c2b704145c9ff87faf8709db221dc"
+  },
+  "rows": 36
+}
