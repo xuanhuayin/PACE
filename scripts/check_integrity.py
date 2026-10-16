@@ -1,4 +1,5 @@
 """Check or rebuild the SHA-256 manifest of the versioned repository files."""
+
 import argparse
 import hashlib
 from pathlib import Path
@@ -34,4 +35,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

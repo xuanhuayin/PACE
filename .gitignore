@@ -13,7 +13,7 @@ outputs/
 outputs*/
 reports/
 checkpoints/
-models/
+/models/
 logs/
 *.log
 *.pt

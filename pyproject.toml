@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pace-dlm"
+version = "0.2.0"
+description = "Construct-then-certify instruction following with diffusion language models"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+dynamic = ["dependencies"]
+
+[project.urls]
+Repository = "https://github.com/xuanhuayin/PACE"
+Issues = "https://github.com/xuanhuayin/PACE/issues"
+
+[project.scripts]
+pace = "pace.cli:main"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["F821", "F822", "F823"]

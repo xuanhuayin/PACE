@@ -29,19 +29,32 @@ flowchart LR
     class S,A,J blue;
 ```
 
-## Contents
+## Project Structure
 
-| Component | Entry points |
-|---|---|
-| Native generation, compilation, PACE | [`run.py`](run.py) |
-| Official benchmark evaluation | [`evaluate.py`](evaluate.py) |
-| IFEval construction and guards | [`cah/program_gen4.py`](cah/program_gen4.py) |
-| IFBench construction and guards | [`cah/program_ifb4.py`](cah/program_ifb4.py), [`cah/ifb4_guards.py`](cah/ifb4_guards.py) |
-| Acceptance predicates | [`cah/predicates_hard.py`](cah/predicates_hard.py), [`cah/predicates_ifb_hard.py`](cah/predicates_ifb_hard.py) |
-| Automaton compilation and inference | [`cah/ctx_v2.py`](cah/ctx_v2.py), [`cah/fdp_v2.py`](cah/fdp_v2.py), root automaton modules |
-| Model interfaces | `cah/*_engine.py`, [`cah/cah_tess.py`](cah/cah_tess.py) |
-| Audit-adjusted fulfillment | [`scripts/audit_metrics.py`](scripts/audit_metrics.py) |
-| Reported results | [`results/`](results/) |
+```text
+src/pace/
+  construction/   # Constraint programs that construct answer content
+  constraints/    # Base predicates and content-aware acceptance conditions
+  automata/       # Finite-state compilation and joint constrained inference
+  guards/         # Comparative checks on certification edits
+  models/         # TESS-2, LLaDA, LLaDA2, and Dream adapters
+  pipelines/      # Native generation, graph compilation, and PACE workflows
+  evaluation/     # Official accuracy, content diagnostics, fulfillment audits
+  data/           # Public benchmark and tokenizer-resource setup
+  services/       # Optional CPU certification worker
+configs/          # Held-out evaluation split
+assets/           # Pinned third-party verifier snapshots and notices
+results/          # Reported results, provenance, and release validation
+examples/         # Synthetic audit input
+scripts/          # Repository integrity tools
+tests/
+  unit/           # Exact-inference, evaluation, and CLI tests
+  regression/     # Construction and comparative-guard cases
+  fixtures/       # Synthetic model and automaton fixtures
+docs/             # Architecture, running, and evaluation guides
+```
+
+Start with the [architecture guide](docs/architecture.md) for the path from construction to certification. The three method components live in [`construction/`](src/pace/construction/), [`constraints/`](src/pace/constraints/), and [`guards/`](src/pace/guards/). Model-specific code stays in [`models/`](src/pace/models/).
 
 ## Installation
 
@@ -53,8 +66,8 @@ cd PACE
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python setup_assets.py
+python -m pip install -e .
+pace setup-assets
 ```
 
 The setup script fetches public benchmark prompts and NLTK resources. It verifies pinned benchmark data and IFEval sentence-tokenizer hashes. Verifier source snapshots and third-party licenses are included in `assets/`.
@@ -74,20 +87,22 @@ The experiments used NVIDIA GeForce RTX 5090 GPUs with PyTorch 2.8.0 and CUDA 12
 TESS-2 additionally requires its pinned public implementation:
 
 ```bash
-python setup_assets.py --tess
+pace setup-assets --tess
 ```
 
 Model weights are obtained separately or supplied through `--checkpoint`.
+
+The source checkout is the supported installation layout because benchmark assets and configuration files are stored alongside the package. `python -m pace` is equivalent to `pace`. The top-level `run.py`, `evaluate.py`, and `setup_assets.py` wrappers remain available.
 
 ## Quick Start
 
 Run **native → compile → generate → evaluate** in order:
 
 ```bash
-python run.py --model llada --benchmark ifeval --stage native
-python run.py --model llada --benchmark ifeval --stage compile -- --workers 6
-python run.py --model llada --benchmark ifeval --stage generate
-python evaluate.py --model llada --benchmark ifeval --output reports/llada-ifeval.json
+pace run --model llada --benchmark ifeval --stage native
+pace run --model llada --benchmark ifeval --stage compile -- --workers 6
+pace run --model llada --benchmark ifeval --stage generate
+pace evaluate --model llada --benchmark ifeval --output reports/llada-ifeval.json
 ```
 
 The default IFEval report uses the **341-prompt holdout with 516 instructions**. Generation and compilation retain the full public prompt order. Development prompts are excluded when held-out results are summarized. Use `--split all` for all 541 prompts.
@@ -95,10 +110,10 @@ The default IFEval report uses the **341-prompt holdout with 516 instructions**.
 For IFBench:
 
 ```bash
-python run.py --model tess --benchmark ifbench --stage native
-python run.py --model tess --benchmark ifbench --stage compile -- --workers 6
-python run.py --model tess --benchmark ifbench --stage generate
-python evaluate.py --model tess --benchmark ifbench --output reports/tess-ifbench.json
+pace run --model tess --benchmark ifbench --stage native
+pace run --model tess --benchmark ifbench --stage compile -- --workers 6
+pace run --model tess --benchmark ifbench --stage generate
+pace evaluate --model tess --benchmark ifbench --output reports/tess-ifbench.json
 ```
 
 IFBench uses all **300 prompts and 344 instructions**.
@@ -116,29 +131,29 @@ IFBench uses all **300 prompts and 344 instructions**.
 For LLaDA-1.5, pass the same checkpoint and a separate working directory to every stage:
 
 ```bash
-python run.py --model llada --checkpoint checkpoints/llada-1.5 --work-dir outputs-llada15 --stage native
-python run.py --model llada --checkpoint checkpoints/llada-1.5 --work-dir outputs-llada15 --stage compile
-python run.py --model llada --checkpoint checkpoints/llada-1.5 --work-dir outputs-llada15 --stage generate
-python evaluate.py --model llada --work-dir outputs-llada15 --output reports/llada15-ifeval.json
+pace run --model llada --checkpoint checkpoints/llada-1.5 --work-dir outputs-llada15 --stage native
+pace run --model llada --checkpoint checkpoints/llada-1.5 --work-dir outputs-llada15 --stage compile
+pace run --model llada --checkpoint checkpoints/llada-1.5 --work-dir outputs-llada15 --stage generate
+pace evaluate --model llada --work-dir outputs-llada15 --output reports/llada15-ifeval.json
 ```
 
 Replace the example checkpoint path with a real model directory or public Hugging Face identifier. For the original TESS-2 snapshot, obtain revision `684af5623534d9163509df1d37b77412b0737671` and pass the local snapshot through `--checkpoint`.
 
-Additional script arguments follow `--`. Inspect stage-specific options with `python cah/<script>.py --help`. See [running details](docs/running.md) for outputs and fallback behavior.
+Additional stage arguments follow `--`. Use `pace run --model llada --stage compile -- --help` to inspect stage options, or add `--dry-run` before `--` to print the command without executing it. See [running details](docs/running.md) for outputs and fallback behavior.
 
 ## Evaluation
 
 Official acceptance and substantive fulfillment are separate quantities:
 
-* `evaluate.py` reports strict/loose prompt and instruction accuracy, exact counts, missing records, and empty answers. Missing responses remain in the denominator. An explicitly empty PACE answer remains a failure.
-* The existing `score_hard` tools additionally report supported content predicates and detector diagnostics.
+* `pace evaluate` reports strict/loose prompt and instruction accuracy, exact counts, missing records, and empty answers. Missing responses remain in the denominator. An explicitly empty PACE answer remains a failure.
+* `pace.evaluation.content` and `pace.evaluation.ifbench_content` report supported content predicates and detector diagnostics.
 * Audit-estimated fulfillment multiplies official instruction accuracy by the mean of two binary Genuine judgments among sampled official passes. This requires actual audit labels.
 
 ```bash
-python evaluate.py --model llada --benchmark ifeval --method native
+pace evaluate --model llada --benchmark ifeval --method native
 
 # Synthetic audit schema example, not experimental results
-python scripts/audit_metrics.py examples/audit_fixture.json --output reports/audit-example.json
+pace audit examples/audit_fixture.json --output reports/audit-example.json
 ```
 
 See [evaluation and auditing](docs/evaluation.md) for the audit schema and confidence intervals. Private audit labels, participant identities, weights, and experiment logs are not distributed.
@@ -163,10 +178,9 @@ After CPU installation and asset setup:
 
 ```bash
 python scripts/check_integrity.py
-python -m unittest test_branched_token_map_v1 test_branched_token_map_sparse_v1 test_tess_branched_quotient_v1
-python -m unittest discover -s tests -v
-python cah/test_program_gen4.py
-python cah/test_program_ifb4.py
+python -m unittest discover -s tests/unit -t . -v
+python -m tests.regression.ifeval
+python -m tests.regression.ifbench
 ```
 
 Solver tests compare inference against exhaustive finite-path enumeration. Construction and guard tests use synthetic fixtures without weights. Release-tool tests cover denominator preservation, empty answers, duplicate keys, shared audit draws, and ranking reversals. GitHub Actions runs the CPU suite. GPU inference is outside this CI job.

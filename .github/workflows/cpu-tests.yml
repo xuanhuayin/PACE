@@ -17,22 +17,24 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
       - name: Install CPU dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -e .
       - name: Verify versioned source integrity
         run: python scripts/check_integrity.py
       - name: Fetch public assets
-        run: python setup_assets.py
+        run: pace setup-assets
       - name: Solver and release-tool tests
         run: |
-          python -m unittest test_branched_token_map_v1 test_branched_token_map_sparse_v1 test_tess_branched_quotient_v1
-          python -m unittest discover -s tests -v
+          python -m unittest discover -s tests/unit -t . -v
       - name: Construction and guard tests
         run: |
-          python cah/test_program_gen4.py
-          python cah/test_program_ifb4.py
+          python -m tests.regression.ifeval
+          python -m tests.regression.ifbench
       - name: CLI and audit-metric smoke checks
         run: |
+          pace --help
+          pace run --help
+          python -m pace evaluate --help
           python run.py --help
           python evaluate.py --help
-          python scripts/audit_metrics.py examples/audit_fixture.json --output reports/synthetic-audit.json
+          pace audit examples/audit_fixture.json --output reports/synthetic-audit.json
 

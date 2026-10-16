@@ -1,6 +1,6 @@
 # Running PACE
 
-Run commands from the repository root with Python 3.12. Run `setup_assets.py` before evaluation and install the appropriate GPU requirements for inference.
+Run commands from the repository root with Python 3.12. Run `pace setup-assets` before evaluation and install the appropriate GPU requirements for inference.
 
 ## Output Layout
 
@@ -23,23 +23,23 @@ The launcher fixes public row order and uses in-process certification. External 
 
 ## Content-Check Diagnostics
 
-Legacy scoring scripts resolve relative directories beneath `cah`. Absolute paths also work. The first component in a merged specification has priority.
+Content diagnostic commands resolve relative directories from the repository root. Absolute paths also work. The first component in a merged specification has priority.
 
 ```bash
 # IFEval holdout
-KEYS_FILE=configs/ifeval_heldout_keys.txt python cah/score_hard.py 'native=../outputs/llada/ifeval/native:response' 'pace=../outputs/llada/ifeval/pace:response|../outputs/llada/ifeval/native:response'
+KEYS_FILE=configs/ifeval_heldout_keys.txt python -m pace.evaluation.content 'native=outputs/llada/ifeval/native:response' 'pace=outputs/llada/ifeval/pace:response|outputs/llada/ifeval/native:response'
 
 # Full IFBench
-python cah/score_hard_ifb.py 'native=../outputs/llada/ifbench/native:response' 'pace=../outputs/llada/ifbench/pace:response|../outputs/llada/ifbench/native:response'
+python -m pace.evaluation.ifbench_content 'native=outputs/llada/ifbench/native:response' 'pace=outputs/llada/ifbench/pace:response|outputs/llada/ifbench/native:response'
 ```
 
-The legacy IFEval diagnostic merger ignores empty strings when selecting between directories. Use `evaluate.py` for official reporting that preserves an explicitly empty answer as a failure.
+The IFEval diagnostic merger ignores empty strings when selecting between directories. Use `pace evaluate` for official reporting that preserves an explicitly empty answer as a failure.
 
 ## Troubleshooting
 
-* Missing NLTK words/CMUdict: run `python setup_assets.py`. Lexical guards need these resources.
+* Missing NLTK words/CMUdict: run `pace setup-assets`. Lexical guards need these resources.
 * IFEval dependency mismatch: use pinned CPU requirements. Scoring checks package versions and resource hashes.
-* TESS imports: run `python setup_assets.py --tess` and install GPU requirements.
+* TESS imports: run `pace setup-assets --tess` and install GPU requirements.
 * LLaDA2 model loading: use its separate requirements/environment.
 * Unavailable graph: inspect unsupported/reduced predicate lists and retain fallback outputs in evaluation.
 * Memory: compilation and joint inference can require substantial CPU RAM in addition to GPU memory.

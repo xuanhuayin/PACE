@@ -6,7 +6,7 @@ PACE inference adapters for five backbones, IFEval/IFBench programs, acceptance 
 
 ## Supplied Separately
 
-Download weights and benchmark data from upstream sources. `setup_assets.py` fetches public prompts and NLTK resources. No weights are committed.
+Download weights and benchmark data from upstream sources. `pace setup-assets` fetches public prompts and NLTK resources. No weights are committed.
 
 Existing baseline repositories and raw private labeling infrastructure are not bundled. The main execution path is PACE and native generation. Private historical audit labels and participant records are excluded. Reported audit-adjusted results can be inspected in `results/`, but cannot be recomputed from historical labels using this release alone. The audit utility supports independent labels with the same aggregation definition.
 

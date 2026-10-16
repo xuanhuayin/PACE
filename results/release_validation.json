@@ -1,11 +1,11 @@
 {
   "date": "2026-10-16",
   "python": "3.12",
-  "environment": "Fresh virtual environment with requirements.txt; public assets fetched with setup_assets.py.",
+  "environment": "Python 3.12 virtual environment with editable package installation and pinned CPU dependencies; pinned public assets.",
   "solver_unit_tests": 20,
   "release_tool_unit_tests": 6,
   "ifeval_guard_assertions": 92,
-  "ifbench_guard_assertions": 47,
+  "ifbench_guard_assertions": 46,
   "official_metric_crosschecks": [
     {
       "model": "tess",
@@ -30,5 +30,11 @@
     }
   ],
   "gpu_inference_rerun": false,
-  "note": "Checks use existing response corpora locally. No response texts or private audit labels are included in the repository."
+  "note": "Checks use existing response corpora locally. No response texts or private audit labels are included in the repository.",
+  "release": "0.2.0",
+  "workflow_unit_tests": 4,
+  "unit_tests_total": 30,
+  "workflow_routes_checked": 24,
+  "ifbench_oracle_subprocess": "passed",
+  "official_reports_equal_to_previous_release": true
 }
