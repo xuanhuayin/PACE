@@ -14,13 +14,9 @@ PACE is a training-free framework for instruction following with diffusion langu
   <img src="docs/figures/teaser.png" width="460" alt="PACE teaser, Figure 1 of the paper">
 </p>
 
-*Figure 1 from the paper: passing checks does not ensure fulfillment.*
-
 ## Method Overview
 
 ![PACE method overview, Figure 2 of the paper](docs/figures/pipeline.png)
-
-*Figure 2 from the paper: construction, answer-conditioned rescoring, joint certification, and comparative edit guards.*
 
 ## Project Structure
 
