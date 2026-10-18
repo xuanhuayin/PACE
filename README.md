@@ -10,24 +10,17 @@ PACE is a training-free framework for instruction following with diffusion langu
 
 **Certified is not fulfilled.** A formal pass can still rely on empty structures, repetition, or meaningless insertions. PACE connects content construction to exact inference over the retained finite-state predicates.
 
-```mermaid
-flowchart LR
-    X["Request + structured requirements"] --> C["Construct answer"]
-    C --> S["Recompute model scores"]
-    X --> A["Compile acceptance conditions"]
-    S --> J["Joint certification"]
-    A --> J
-    J --> G["Comparative edit guards"]
-    C --> G
-    G -->|admit| Y["Return certified answer"]
-    G -->|reject| R["Penalize edits and retry"]
-    R --> J
-    R -->|budget exhausted| F["Return constructed answer"]
-    classDef pink fill:#F9E8F0,stroke:#C65A8B,color:#302A32;
-    classDef blue fill:#EAF1F7,stroke:#718FA5,color:#302A32;
-    class C,G,Y pink;
-    class S,A,J blue;
-```
+<p align="center">
+  <img src="docs/figures/teaser.png" width="460" alt="PACE teaser, Figure 1 of the paper">
+</p>
+
+*Figure 1 from the paper: passing checks does not ensure fulfillment.*
+
+## Method Overview
+
+![PACE method overview, Figure 2 of the paper](docs/figures/pipeline.png)
+
+*Figure 2 from the paper: construction, answer-conditioned rescoring, joint certification, and comparative edit guards.*
 
 ## Project Structure
 

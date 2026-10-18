@@ -1,0 +1,20 @@
+{
+  "description": "Raster renderings of the manuscript teaser and method figures.",
+  "conversion": "pdftoppm, PNG, 300 DPI, first page",
+  "figures": [
+    {
+      "paper_figure": 1,
+      "source_file": "figures/teaser.pdf",
+      "source_pdf_sha256": "ab1ca073295452524061809e80749c1183d3f91e2a01964cd8d1b0ccad66ee19",
+      "readme_image": "teaser.png",
+      "image_sha256": "e10547b72e60ce75781a4c87a38465774c6574ae1396aff28bb77ff6e26ad635"
+    },
+    {
+      "paper_figure": 2,
+      "source_file": "figures/pipeline.pdf",
+      "source_pdf_sha256": "27c7f775551a3116c9cf21e59148bf3fcd6d8e5c54aade0fd6baf1540e411b8f",
+      "readme_image": "pipeline.png",
+      "image_sha256": "9c0203a4bfa4b1e08048c0cf04201ff9cc0ffb3322f0b5f58297220e8b2c6e71"
+    }
+  ]
+}
